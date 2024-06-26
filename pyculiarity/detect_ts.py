@@ -196,9 +196,7 @@ def detect_ts(df, max_anoms=0.10, direction='pos',
                 sub_df = df[(df.timestamp >
                      (last_date - datetime.timedelta(days=num_days_in_period)))
                     & (df.timestamp <= last_date)]
-            #all_data.append(sub_df)
-            #20240626
-            all_data = pandas.concat(all_data, sub_df)   
+            all_data = pd.concat(all_data, sub_df)   
     else:
         all_data = [df]
 
@@ -256,12 +254,8 @@ def detect_ts(df, max_anoms=0.10, direction='pos',
             # Remove any anoms below the threshold
             anoms = anoms[anoms.value >= thresh]
 
-        #all_anoms = all_anoms.append(anoms)
-        #20240626
-        all_anoms = pandas.concat([all_anoms,anoms])
-        #20240626
-        #seasonal_plus_trend = seasonal_plus_trend.append(data_decomp)
-        seasonal_plus_trend = pandas.concat([seasonal_plus_trend,data_decomp])
+        all_anoms = pd.concat([all_anoms,anoms])
+        seasonal_plus_trend = pd.concat([seasonal_plus_trend,data_decomp])
     # Cleanup potential duplicates
     try:
         all_anoms.drop_duplicates(subset=['timestamp'], inplace=True)
