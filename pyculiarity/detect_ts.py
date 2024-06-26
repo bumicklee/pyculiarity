@@ -6,6 +6,7 @@ from math import ceil
 from pandas import DataFrame, Timestamp
 import datetime
 import numpy as np
+import pandas as pd
 from six import string_types
 
 Direction = namedtuple('Direction', ['one_tail', 'upper_tail'])
